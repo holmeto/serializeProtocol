@@ -5,6 +5,7 @@ import com.gaotu.serialize.model.avro.AvroExample;
 import com.gaotu.serialize.model.json.JacksonJsonExample;
 import com.gaotu.serialize.model.protobuf.ProtoBuf;
 import com.gaotu.serialize.model.thrift.ThriftExample;
+import com.gaotu.serialize.util.ProtoBufUtil;
 import org.apache.avro.io.*;
 import org.apache.avro.specific.SpecificDatumReader;
 import org.apache.avro.specific.SpecificDatumWriter;
@@ -28,6 +29,8 @@ public class Main {
         execThriftSerializer();
         System.out.println("-------------------------------");
         execJacksonJsonSerializer();
+        System.out.println("-------------------------------");
+        execProtoStuffSerializer();
     }
     //     {"name": "money", "type": ["double", "null"]}
     //java -jar /Users/bjhl/DownLoads/avro-tools-1.9.2.jar compile schema /Users/bjhl/Public/jdk/example.avsc .
@@ -199,6 +202,30 @@ public class Main {
         long end = System.currentTimeMillis();
         System.out.println("JacksonJson序列化器完成序列化：" + end);
         System.out.println("JacksonJson序列化器总用时：" + (end - start));
+    }
+
+    // 使用protostuff序列化
+    // byte[] serializerResult = ProtoBufUtil.serializer(student);
+    public static void execProtoStuffSerializer() {
+        Example example = new Example();
+        example.setName("mian");
+        example.setAge(18);
+        example.setSex("男");
+        example.setMoney(100000.00);
+        ObjectMapper mapper = new ObjectMapper();
+        long start = System.currentTimeMillis();
+        System.out.println("ProtoStuff序列化器开始序列化：" + start);
+        for (int i = 0; i < 1000000; i++) {
+                byte[] bytes = ProtoBufUtil.serializer(example);
+                example = ProtoBufUtil.deserializer(bytes, Example.class);
+                if (i == 1) {
+                    System.out.println("example：" + example);
+                    System.out.println("size：" + bytes.length);
+                }
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("ProtoStuff序列化器完成序列化：" + end);
+        System.out.println("ProtoStuff序列化器总用时：" + (end - start));
     }
 
 }
