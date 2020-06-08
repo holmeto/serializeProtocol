@@ -1,17 +1,24 @@
 package com.gaotu.serialize.model;
 
-import java.io.Serializable;
+import io.protostuff.Tag;
 
-public class Example implements Serializable {
+public class Person {
 
-    private static final long serialVersionUID = 123456L;
+//    private static final long serialVersionUID = 123456L;
 
+    @Tag(1)
     private String name;
 
+    @Tag(2)
     private int age;
 
+    @Tag(5)
+    private int height;
+
+    @Tag(3)
     private String sex;
 
+    @Tag(4)
     private double money;
 
     public String getName() {
@@ -46,11 +53,20 @@ public class Example implements Serializable {
         this.money = money;
     }
 
+//    public int getHeight() {
+//        return height;
+//    }
+//
+//    public void setHeight(int height) {
+//        this.height = height;
+//    }
+
     @Override
     public String toString() {
-        return "Example{" +
+        return "Person{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+//                ", height=" + height +
                 ", sex='" + sex + '\'' +
                 ", money=" + money +
                 '}';

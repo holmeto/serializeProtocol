@@ -1,6 +1,7 @@
 package com.gaotu.serialize;
 
-import com.gaotu.serialize.model.Example;
+import com.gaotu.serialize.model.City;
+import com.gaotu.serialize.model.Person;
 import com.gaotu.serialize.model.avro.AvroExample;
 import com.gaotu.serialize.model.json.JacksonJsonExample;
 import com.gaotu.serialize.model.protobuf.ProtoBuf;
@@ -16,6 +17,8 @@ import org.apache.thrift.transport.TTransport;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -37,7 +40,7 @@ public class Main {
 
     // JDK自带序列化器
     public static void execJdkSerializer() {
-        Example example = new Example();
+        Person example = new Person();
         example.setName("mian");
         example.setAge(18);
         example.setSex("男");
@@ -56,7 +59,7 @@ public class Main {
                 byte[] bytes = bos.toByteArray();
                 bis = new ByteArrayInputStream(bytes);
                 ois = new ObjectInputStream(bis);
-                example = (Example) ois.readObject();
+                example = (Person) ois.readObject();
                 if (i == 1) {
                     System.out.println("example：" + example);
                     System.out.println("size：" + bytes.length);
@@ -207,7 +210,7 @@ public class Main {
     // 使用protostuff序列化
     // byte[] serializerResult = ProtoBufUtil.serializer(student);
     public static void execProtoStuffSerializer() {
-        Example example = new Example();
+        Person example = new Person();
         example.setName("mian");
         example.setAge(18);
         example.setSex("男");
@@ -217,7 +220,7 @@ public class Main {
         System.out.println("ProtoStuff序列化器开始序列化：" + start);
         for (int i = 0; i < 1000000; i++) {
                 byte[] bytes = ProtoBufUtil.serializer(example);
-                example = ProtoBufUtil.deserializer(bytes, Example.class);
+                example = ProtoBufUtil.deserializer(bytes, Person.class);
                 if (i == 1) {
                     System.out.println("example：" + example);
                     System.out.println("size：" + bytes.length);
@@ -227,6 +230,35 @@ public class Main {
         System.out.println("ProtoStuff序列化器完成序列化：" + end);
         System.out.println("ProtoStuff序列化器总用时：" + (end - start));
     }
+
+    public static void execComplexProtoStuffSerializer() {
+        Country country = new Country();
+        country.setName("兔子");
+        List<City> cities = new ArrayList<>();
+        City shanghai = new City();
+        shanghai.setName("上海");
+        Person p1 = new Person();
+        p1.setName("李四");
+        p1.setAge(12);
+        p1.setSex("男");
+        p1.setMoney(100);
+        Person p2 = new Person();
+        p1.setName("张三");
+        p1.setAge(14);
+        p1.setSex("女");
+        p1.setMoney(1);
+        List<Person> people = new ArrayList<>();
+        people.add(p1);
+        people.add(p2);
+        shanghai.setPeople(people);
+        City beijing = new City();
+        beijing.setName("北京");
+        beijing.setPeople(people);
+        cities.add(shanghai);
+        cities.add(beijing);
+
+    }
+
 
 }
 
