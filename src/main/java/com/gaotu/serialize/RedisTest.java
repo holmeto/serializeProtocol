@@ -1,5 +1,6 @@
 package com.gaotu.serialize;
 
+import com.gaotu.serialize.model.Person;
 import com.gaotu.serialize.service.RedisService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,12 +41,12 @@ public class RedisTest {
 
     @Test
     public void testValueOption() throws Exception {
-//        Person example = new Person();
-//        example.setName("mian");
-//        example.setAge(18);
-//        example.setSex("男");
-//        example.setMoney(1000000.00);
-//        valueOperations.set("protobuf", example);
+        Person example = new Person();
+        example.setName("mian");
+        example.setAge(18);
+        example.setSex("男");
+        example.setMoney(1000000.00);
+        valueOperations.set("protobuf", example);
         System.out.println(valueOperations.get("protobuf"));
 //        Country country = new Country();
 //        country.setName("兔子");

@@ -2,24 +2,29 @@ package com.gaotu.serialize.model;
 
 import io.protostuff.Tag;
 
-public class Person {
+import java.util.List;
+
+public class Person extends Animal{
 
 //    private static final long serialVersionUID = 123456L;
 
-    @Tag(1)
+    @Tag(3)
     private String name;
 
-    @Tag(2)
+    @Tag(4)
     private int age;
 
     @Tag(5)
     private int height;
 
-    @Tag(3)
+    @Tag(6)
     private String sex;
 
-    @Tag(4)
+    @Tag(7)
     private double money;
+
+    @Tag(8)
+    private List<String> nickName;
 
     public String getName() {
         return name;
@@ -53,22 +58,34 @@ public class Person {
         this.money = money;
     }
 
-//    public int getHeight() {
-//        return height;
-//    }
-//
-//    public void setHeight(int height) {
-//        this.height = height;
-//    }
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+
+    public List<String> getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(List<String> nickName) {
+        this.nickName = nickName;
+    }
 
     @Override
     public String toString() {
         return "Person{" +
-                "name='" + name + '\'' +
+                "type='" + getType() + '\'' +
+                ", name='" + name + '\'' +
+                ", life='" + getLife() + '\'' +
                 ", age=" + age +
-//                ", height=" + height +
+                ", height=" + height +
                 ", sex='" + sex + '\'' +
                 ", money=" + money +
+                ", nickName=" + nickName +
                 '}';
     }
 }

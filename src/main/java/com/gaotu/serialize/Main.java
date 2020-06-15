@@ -42,7 +42,7 @@ public class Main {
     public static void execJdkSerializer() {
         Person example = new Person();
         example.setName("mian");
-        example.setAge(18);
+//        example.setAge(18);
         example.setSex("男");
         example.setMoney(1000000.00);
         ObjectOutputStream oos = null;
@@ -212,7 +212,7 @@ public class Main {
     public static void execProtoStuffSerializer() {
         Person example = new Person();
         example.setName("mian");
-        example.setAge(18);
+//        example.setAge(18);
         example.setSex("男");
         example.setMoney(100000.00);
         ObjectMapper mapper = new ObjectMapper();
@@ -239,12 +239,12 @@ public class Main {
         shanghai.setName("上海");
         Person p1 = new Person();
         p1.setName("李四");
-        p1.setAge(12);
+//        p1.setAge(12);
         p1.setSex("男");
         p1.setMoney(100);
         Person p2 = new Person();
         p1.setName("张三");
-        p1.setAge(14);
+//        p1.setAge(14);
         p1.setSex("女");
         p1.setMoney(1);
         List<Person> people = new ArrayList<>();
