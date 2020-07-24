@@ -55,7 +55,7 @@ public class ProtoStuffSerializer implements RedisSerializer<Object> {
      *     
      */
     public static Field[] getAllField(Class<?> clazz) {
-        ArrayList<Field> fieldList = new ArrayList<Field>();
+        ArrayList<Field> fieldList = new ArrayList<>();
         Field[] dFields = clazz.getDeclaredFields();
         if (dFields.length > 0) {
             fieldList.addAll(Arrays.asList(dFields));

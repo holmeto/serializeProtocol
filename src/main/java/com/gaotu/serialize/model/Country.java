@@ -1,6 +1,4 @@
-package com.gaotu.serialize;
-
-import com.gaotu.serialize.model.City;
+package com.gaotu.serialize.model;
 
 import java.util.List;
 
@@ -20,6 +18,10 @@ public class Country {
 
     public List<City> getCities() {
         return cities;
+    }
+
+    public static String test(int value) {
+        return String.valueOf(value);
     }
 
     public void setCities(List<City> cities) {

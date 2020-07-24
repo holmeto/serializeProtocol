@@ -1,6 +1,7 @@
 package com.gaotu.serialize;
 
 import com.gaotu.serialize.model.City;
+import com.gaotu.serialize.model.Country;
 import com.gaotu.serialize.model.Person;
 import com.gaotu.serialize.model.avro.AvroExample;
 import com.gaotu.serialize.model.json.JacksonJsonExample;
